@@ -9,6 +9,7 @@
 }
 
 body {
+    display: flex;
     background: url("./assets/backgrounds/clear-sky-1.png");
     width: 100%;
     height: 100dvh;
@@ -18,13 +19,6 @@ body {
     color: white;
 }
 
-body::before{
-    content: "";
-    width: 100%;
-    height: 100dvh;
-    z-index: 0;
-}
-
 .asideMenu {
     display: flex;
     flex-direction: column;
@@ -32,6 +26,10 @@ body::before{
     height: 100%;
     background-color: rgb(0, 0, 0, 0.10);
     padding: 30px 0px;
+}
+
+.navTitle {
+    user-select: none;
 }
 
 .aside__boxes-between {
@@ -57,7 +55,11 @@ body::before{
     height: 50px;
     border-radius: 15px;
     cursor: pointer;
-    background-color: rgb(0, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.widget-box:hover {
+    background-color: rgb(0, 0, 0, 0.2);
 }
 
 .nav__widget {
@@ -68,14 +70,59 @@ body::before{
     align-items: center;
 }
 
-.nav__icon{
+.nav__icon {
+    opacity: 0.85;
 }
 
-/* .header {
+.content{
+    width: 100%;
+}
+
+.header {
     display: flex;
     align-items: center;
-    height: 60px;
+    height: 120px;
     width: 100%;
-    z-index: 1;
     padding: 10px 43px;
-} */
+}
+
+.searchContainer {
+    display: flex;
+    width: 300px;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.15);
+    border-radius: 15px;
+    gap: 5px;
+    padding: 3px 15px 3px 7px;
+}
+
+.searchInp {
+    height: 37px;
+    width: 300px;
+    color: white;
+    background: none;
+    border: none;
+}
+
+.searchInp::placeholder {
+    color: rgb(255, 255, 255, 0.75);
+}
+
+.searchBtn {
+    height: 100%;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.searchIcon {
+    /* position: static;
+    bottom: 3; */
+    width: 35px;
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+.searchIcon:hover {
+    opacity: 0.8;
+}
