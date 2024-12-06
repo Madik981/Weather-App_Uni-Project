@@ -177,7 +177,7 @@ body {
     padding: 23px;
 }
 
-.now__box-title {
+.widget__box-title {
     display: flex;
     width: 100%;
     align-items: center;
@@ -248,12 +248,51 @@ body {
 .widget__forecast {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 55%;
     border-radius: 15px;
-    justify-content: space-between;
     align-items: center;
     background-color: rgb(255, 255, 255, 0.15);
+    padding: 22px;
+    gap: 10%;
+}
+
+.forecast__boxes-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 7%;
+}
+
+.forecast__box {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 10px;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.forecast__box__weather {
+    display: flex;
+}
+
+.forecast__box__weather-condition {
+    width: 30px;
+    height: 30px;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.forecast__box__text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .main__box-right {
