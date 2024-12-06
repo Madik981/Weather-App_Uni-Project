@@ -278,6 +278,7 @@ body {
 
 .forecast__box__weather {
     display: flex;
+    gap: 5px;
 }
 
 .forecast__box__weather-condition {
