@@ -174,6 +174,75 @@ body {
     height: 45%;
     background-color: rgb(0, 0, 0, 0.15);
     border-radius: 15px;
+    padding: 23px;
+}
+
+.now__box-title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.now__weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10%;
+}
+
+.now__weather__condition {
+    width: 40%;
+    height: auto;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.now__weather__text {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+}
+
+.now__weather__text-temp {
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.now__weather__text-condition{
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.now__box-bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 10px 30px 0px;
+    border-top: 1px solid rgb(255, 255, 255, 0.4);
+}
+
+.box-bottom-text__img {
+    width: 30px;
+    height: 30px;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.box-bottom__text {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.widget__title {
+    user-select: none;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .widget__forecast {
@@ -204,6 +273,7 @@ body {
     height: 56%;
     border-radius: 15px;
     background-color: rgb(255, 255, 255, 0.15);
+    padding: 23px;
 }
 
 .widget__todayAt {
