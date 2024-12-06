@@ -313,6 +313,43 @@ body {
     border-radius: 15px;
     background-color: rgb(255, 255, 255, 0.15);
     padding: 23px;
+    gap: 10%;
+}
+
+.highlights__boxes-double {
+    display: flex;
+    width: 100%;
+    height: 60%;
+    justify-content: space-between;
+}
+
+.highlights__boxes-double__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 49%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.12);
+}
+
+.highlights__boxes-quadruple {
+    display: flex;
+    width: 100%;
+    height: 40%;
+    justify-content: space-between;
+}
+
+.highlights__boxes-quadruple__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 23.5%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.12);
 }
 
 .widget__todayAt {
