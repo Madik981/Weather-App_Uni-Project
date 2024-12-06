@@ -323,6 +323,11 @@ body {
     justify-content: space-between;
 }
 
+.highlights__box__title-text {
+    font-size: 14px;
+    font-weight: 300;
+}
+
 .highlights__boxes-double__box {
     display: flex;
     flex-direction: column;
