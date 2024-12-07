@@ -458,7 +458,13 @@ body {
     -webkit-user-drag: none;
     width: 40px;
     height: 40px;
+    transition: 0.3s;
+    opacity: 0;
 }
+
+.highlights__icon.active {
+    opacity: 1;
+}   
 
 .highlights__text-small {
     user-select: none;

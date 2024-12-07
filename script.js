@@ -22,6 +22,7 @@ const windSpeed = document.getElementById('windSpeed');
 const visibilityDistance = document.getElementById('visibilityDistance');
 const feelsLike_temp = document.getElementById('feelsLike_temp');
 const highlightsBottom_cards = document.querySelectorAll('.boxes-quadruple__card');
+const highlights_icons = document.querySelectorAll('.highlights__icon');
 
 
 
@@ -153,5 +154,8 @@ const updateHighlightsBottomData = (data) => {
 
     highlightsBottom_cards.forEach((card) => {
         card.classList.add('active');
+    });
+    highlights_icons.forEach((icon) => {
+        icon.classList.add('active');
     });
 }
