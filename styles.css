@@ -582,6 +582,19 @@ body {
     padding: 7px;
 }
 
+.todayAt__icon {
+    user-select: none;
+    -webkit-user-drag: none;
+    width: 40px;
+    height: 40px;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.todayAt__icon.active {
+    opacity: 1;
+}
+
 .card__box-text {
     display: flex;
     justify-content: center;

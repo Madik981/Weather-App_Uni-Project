@@ -24,6 +24,8 @@ const feelsLike_temp = document.getElementById('feelsLike_temp');
 const highlightsBottom_cards = document.querySelectorAll('.boxes-quadruple__card');
 const highlights_icons = document.querySelectorAll('.highlights__icon');
 
+const todayAt_boxes = document.getElementById('todayAt_boxes');
+
 
 
 const api_key = '08f52bb32c104b07b1e124813240512';
@@ -42,6 +44,7 @@ const showData = async (city) => {
     updateForecastData(data);
     updateSSData(data);
     updateHighlightsBottomData(data);
+    updateTodayAtData(data);
 }
 
 showData();
@@ -53,7 +56,7 @@ const updateNowData = (data) => {
     now_temp.textContent = data.current.temp_c + '°C';
     now_condition.textContent = data.current.condition.text;
     now_condition_icon.src = "https:" + data.current.condition.icon;
-    now_date.textContent = data.location.localtime;
+    now_date.textContent = data.forecast.forecastday[0].date;
     now_location.textContent = data.location.name;
 
     now_temp.classList.add('active');
@@ -158,4 +161,27 @@ const updateHighlightsBottomData = (data) => {
     highlights_icons.forEach((icon) => {
         icon.classList.add('active');
     });
+}
+
+
+
+
+const updateTodayAtData = (data) => {
+    for (let i = 0; i < data.forecast.forecastday[0].hour.length; i++) {
+        const time = i.toString().padStart(2, '0') + ":00";
+        todayAt_boxes.insertAdjacentHTML('beforeend', `<div class="todayAt__boxes__card">
+            <div class="card__box-bottom">
+                <p class="todayAt__text">${time}</p>
+                <img src="${data.forecast.forecastday[0].hour[i].condition.icon}" alt="weatherCondition" class="todayAt__icon">
+                <p class="todayAt__text" id="todayAt_temp">${data.forecast.forecastday[0].hour[i].temp_c}°C</p>
+            </div>
+            <div class="card__box-text">
+                <p class="todayAt__text">${time}</p>
+            </div>
+        </div>`);
+    }
+    const todayAt_icons = document.querySelectorAll('.todayAt__icon');
+    todayAt_icons.forEach((icon) => {
+        setTimeout(() => {icon.classList.add('active');}, 10);
+    })
 }
