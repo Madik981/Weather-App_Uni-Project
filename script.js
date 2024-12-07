@@ -233,3 +233,30 @@ const convertDateDataToDay = (dateString) => {
     const date = new Date(year, month - 1, day);
     return date.toLocaleString('en-US', { weekday: 'short' });
 }
+
+
+
+
+const updateBackground = (condition) => {
+    const body = document.querySelector('body');
+    switch (condition) {
+        case 'Sunny':
+            body.style.backgroundImage = "url('./assets/images/sunny.jpg')";
+            break;
+        case 'Rain':
+            body.style.backgroundImage = "url('./assets/images/rain.jpg')";
+            break;
+        case 'Cloudy':
+            body.style.backgroundImage = "url('./assets/images/cloudy.jpg')";
+            break;
+        case 'Partly cloudy':
+            body.style.backgroundImage = "url('./assets/images/partly-cloudy.jpg')";
+            break;
+        case 'Clear':
+            body.style.backgroundImage = "url('./assets/images/clear.jpg')";
+            break;
+        default:
+            console.log('Unknown weather condition');
+    }
+    
+}
