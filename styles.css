@@ -406,6 +406,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.aq-boxes__card.active {
+    opacity: 1;
 }
 
 .aq-boxes__card__icon {

@@ -11,7 +11,7 @@ const aq_pm = document.getElementById('aq_pm');
 const aq_so = document.getElementById('aq_so');
 const aq_no = document.getElementById('aq_no');
 const aq_o = document.getElementById('aq_o');
-const aqBoxes_card = document.querySelectorAll('aq-boxes__card');
+const aqBoxes_card = document.querySelectorAll('.aq-boxes__card');
 
 const ss_sunriseTime = document.getElementById('ss_sunriseTime');
 const ss_sunsetTime = document.getElementById('ss_sunsetTime');
@@ -93,6 +93,12 @@ const updateForecastData = (data) => {
 
 const updateAQData = (data) => {
     aq_pm.textContent = data.current.air_quality.pm2_5;
+    aq_so.textContent = data.current.air_quality.so2;
+    aq_no.textContent = data.current.air_quality.no2;
+    aq_o.textContent = data.current.air_quality.o3;
+    aqBoxes_card.forEach((card) => {
+        card.classList.add('active');
+      });
 }
 
 console.log(now_temp.textContent);
