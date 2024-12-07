@@ -197,6 +197,12 @@ body {
     height: auto;
     -webkit-user-drag: none;
     user-select: none;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.now__weather__condition.active {
+    opacity: 1;
 }
 
 .now__weather__text {
@@ -209,11 +215,23 @@ body {
 .now__weather__text-temp {
     font-size: 50px;
     font-weight: 700;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.now__weather__text-temp.active {
+    opacity: 1;
 }
 
 .now__weather__text-condition{
     font-size: 18px;
     font-weight: 300;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.now__weather__text-condition.active {
+    opacity: 1;
 }
 
 .now__box-bottom {
@@ -223,6 +241,12 @@ body {
     height: 100%;
     padding: 10px 30px 0px;
     border-top: 1px solid rgb(255, 255, 255, 0.4);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.now__box-bottom.active {
+    opacity: 1;
 }
 
 .box-bottom-text__img {
@@ -232,12 +256,20 @@ body {
     user-select: none;
 }
 
-.box-bottom__text {
+.box-bottom__text__container {
     display: flex;
     gap: 6px;
     align-items: center;
+}
+
+.box-bottom__text {
     font-size: 13px;
     font-weight: 300;
+    opacity: 0;
+}
+
+.box-bottom__text.active {
+    opacity: 1;
 }
 
 .widget__title {
@@ -275,6 +307,12 @@ body {
     padding: 0px 10px;
     -webkit-user-drag: none;
     user-select: none;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.forecast__box.active {
+    opacity: 1;
 }
 
 .forecast__box__weather {

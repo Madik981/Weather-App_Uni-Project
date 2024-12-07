@@ -3,11 +3,15 @@ const now_condition_icon = document.getElementById('now_condition_icon');
 const now_condition = document.getElementById('now_condition');
 const now_date = document.getElementById('now_date');
 const now_location = document.getElementById('now_location');
+const now_boxBottom = document.getElementById('now_boxBottom');
+
+const forecast_boxesList = document.getElementById('forecast__boxesList');
 
 const aq_pm = document.getElementById('aq_pm');
 const aq_so = document.getElementById('aq_so');
 const aq_no = document.getElementById('aq_no');
 const aq_o = document.getElementById('aq_o');
+const aqBoxes_card = document.querySelectorAll('aq-boxes__card');
 
 const ss_sunriseTime = document.getElementById('ss_sunriseTime');
 const ss_sunsetTime = document.getElementById('ss_sunsetTime');
@@ -17,16 +21,12 @@ const windSpeed = document.getElementById('windSpeed');
 const visibilityDistance = document.getElementById('visibilityDistance');
 const feelsLike_temp = document.getElementById('feelsLike_temp');
 
-const forecast_condition_icon = document.getElementById('forecast_condition_icon');
-const forecast_temp = document.getElementById('forecast_temp');
-const forecast_date = document.getElementById('forecast_date');
-const forecast_day = document.getElementById('forecast_day');
 
 
 const api_key = '08f52bb32c104b07b1e124813240512';
 
 const fetchData = async (city) => {
-    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${city}&days=5&aqi=yes&alerts=no`);
+    const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${city}&days=6&aqi=yes&alerts=no`);
     const data = await response.json();
     return data;
 }
@@ -35,6 +35,8 @@ const showData = async (city) => {
     const data = await fetchData("Almaty");
     console.log(data);
     updateNowData(data);
+    updateAQData(data);
+    updateForecastData(data);
 }
 
 showData();
@@ -45,6 +47,52 @@ const updateNowData = (data) => {
     now_condition_icon.src = "https:" + data.current.condition.icon;
     now_date.textContent = data.location.localtime;
     now_location.textContent = data.location.name;
+
+    now_temp.classList.add('active');
+    now_condition.classList.add('active');
+    now_condition_icon.classList.add('active');
+    now_date.classList.add('active');
+    now_location.classList.add('active');
+    now_boxBottom.classList.add('active');
+}
+
+const updateForecastData = (data) => {
+    for (let i = 1; i < data.forecast.forecastday.length; i++) {
+        forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box">
+            <div class="forecast__box__weather">
+                <img src="${data.forecast.forecastday[i].day.condition.icon}" alt="weatherCondition" class="forecast__box__weather-condition">
+                <div class="forecast__box__text">
+                    <p class="forecast__box__weather-temp">${data.forecast.forecastday[i].day.maxtemp_c} / ${data.forecast.forecastday[i].day.mintemp_c}</p>
+                </div>
+            </div>
+            <div class="forecast__box__text">
+                <p class="forecast__text">${data.forecast.forecastday[i].date}</p>
+            </div>
+        </div>`);
+    };
+    const forecast_boxes = document.querySelectorAll('.forecast__box');
+    forecast_boxes.forEach((box) => {
+        setTimeout(() => {box.classList.add('active');}, 10);
+      });
+    // forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box">
+    //                             <div class="forecast__box__weather">
+    //                                 <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="forecast__box__weather-condition" id="forecast_condition_icon">
+    //                                 <div class="forecast__box__text">
+    //                                     <p class="forecast__box__weather-temp" id="forecast_temp">25°C</p>
+    //                                 </div>
+    //                             </div>
+    //                             <div class="forecast__box__text">
+    //                                 <p class="forecast__text" id="forecast_date">6 Dec</p>
+    //                             </div>
+    //                             <div class="forecast__box__text">
+    //                                 <p class="forecast__text" id="forecast_day">Friday</p>
+    //                             </div>
+    //                         </div>`);
+    
+}
+
+const updateAQData = (data) => {
+    aq_pm.textContent = data.current.air_quality.pm2_5;
 }
 
 console.log(now_temp.textContent);
