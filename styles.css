@@ -445,6 +445,12 @@ body {
     /* justify-content: space-between; */
     gap: 15%;
     width: 40%;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.ss-boxes__card.active {
+    opacity: 1;
 }
 
 .highlights__icon {

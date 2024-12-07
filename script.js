@@ -15,6 +15,7 @@ const aqBoxes_card = document.querySelectorAll('.aq-boxes__card');
 
 const ss_sunriseTime = document.getElementById('ss_sunriseTime');
 const ss_sunsetTime = document.getElementById('ss_sunsetTime');
+const ssBoxes_card = document.querySelectorAll('.ss-boxes__card');
 
 const humidityPercent = document.getElementById('humidityPercent');
 const windSpeed = document.getElementById('windSpeed');
@@ -37,9 +38,13 @@ const showData = async (city) => {
     updateNowData(data);
     updateAQData(data);
     updateForecastData(data);
+    updateSSData(data);
 }
 
 showData();
+
+
+
 
 const updateNowData = (data) => {
     now_temp.textContent = data.current.temp_c + '°C';
@@ -55,6 +60,9 @@ const updateNowData = (data) => {
     now_location.classList.add('active');
     now_boxBottom.classList.add('active');
 }
+
+
+
 
 const updateForecastData = (data) => {
     for (let i = 1; i < data.forecast.forecastday.length; i++) {
@@ -91,6 +99,9 @@ const updateForecastData = (data) => {
     
 }
 
+
+
+
 const updateAQData = (data) => {
     aq_pm.textContent = data.current.air_quality.pm2_5;
     aq_so.textContent = data.current.air_quality.so2;
@@ -102,3 +113,29 @@ const updateAQData = (data) => {
 }
 
 console.log(now_temp.textContent);
+
+
+
+
+const updateSSData = (data) => {
+    ss_sunriseTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunrise);
+    ss_sunsetTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunset);
+    ssBoxes_card.forEach((card) => {
+        card.classList.add('active');
+      });
+}
+
+const convertTimeFormat = (timeString) => {
+    const [time, period] = timeString.split(' '); 
+    let [hours, minutes] = time.split(':').map(Number);
+  
+    if (period === 'PM' && hours !== 12) {
+      hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+      hours = 0;
+    }
+  
+    hours = hours.toString().padStart(2, '0');
+  
+    return `${hours}:${minutes.toString().padStart(2, '0')}`;
+}
