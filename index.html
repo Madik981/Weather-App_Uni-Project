@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <aside class="asideMenu">
@@ -49,12 +50,12 @@
                             <h3 class="widget__title">Now</h3>
                         </div>
                         <div class="now__weather">
-                            <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="now__weather__condition">
+                            <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="now__weather__condition" id="now_condition_icon">
                             <div class="now__weather__text">
-                                <h2 class="now__weather__text-temp">
+                                <h2 class="now__weather__text-temp" id="now_temp">
                                     25°C
                                 </h2>
-                                <p class="now__weather__text-condition">
+                                <p class="now__weather__text-condition" id="now_weatherCondition">
                                     Cloudy
                                 </p>
                             </div>
@@ -62,11 +63,11 @@
                         <div class="now__box-bottom">
                             <div class="box-bottom__text">
                                 <img src="./assets/icons/calendar_today_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="date" class="box-bottom-text__img">
-                                <p class="box-bottom__text">Friday 6, Dec</p>
+                                <p class="box-bottom__text" id="now_date">Friday 6, Dec</p>
                             </div>
                             <div class="box-bottom__text">
                                 <img src="./assets/icons/near_me_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="location" class="box-bottom-text__img">
-                                <p class="box-bottom__text">London, GB</p>
+                                <p class="box-bottom__text" id="now_location">London, GB</p>
                             </div>
                         </div>
                     </div>
@@ -77,16 +78,16 @@
                         <div class="forecast__boxes-list">
                             <div class="forecast__box">
                                 <div class="forecast__box__weather">
-                                    <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="forecast__box__weather-condition">
+                                    <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="forecast__box__weather-condition" id="forecast_condition_icon">
                                     <div class="forecast__box__text">
-                                        <p class="forecast__box__weather-temp">25°C</p>
+                                        <p class="forecast__box__weather-temp" id="forecast_temp">25°C</p>
                                     </div>
                                 </div>
                                 <div class="forecast__box__text">
-                                    <p class="forecast__text">6 Dec</p>
+                                    <p class="forecast__text" id="forecast_date">6 Dec</p>
                                 </div>
                                 <div class="forecast__box__text">
-                                    <p class="forecast__text">Friday</p>
+                                    <p class="forecast__text" id="forecast_day">Friday</p>
                                 </div>
                             </div>
                             <div class="forecast__box">
@@ -163,19 +164,19 @@
                                         </div>
                                         <div class="aq-boxes__card">
                                             <p class="highlights__text-small">PM2.5</p>
-                                            <p class="highlights__text-main">3.90</p>
+                                            <p class="highlights__text-main" id="aq_pm">3.90</p>
                                         </div>
                                         <div class="aq-boxes__card">
                                             <p class="highlights__text-small">SO2</p>
-                                            <p class="highlights__text-main">7.75</p>
+                                            <p class="highlights__text-main" id="aq_so">7.75</p>
                                         </div>
                                         <div class="aq-boxes__card">
                                             <p class="highlights__text-small">NO2</p>
-                                            <p class="highlights__text-main">33.6</p>
+                                            <p class="highlights__text-main" id="aq_no">33.6</p>
                                         </div>
                                         <div class="aq-boxes__card">
                                             <p class="highlights__text-small">O3</p>
-                                            <p class="highlights__text-main">38.6</p>
+                                            <p class="highlights__text-main" id="aq_o">38.6</p>
                                         </div>
                                     </div>
                                 </div>
@@ -192,7 +193,7 @@
                                             </div>
                                             <div class="ss-boxes__card__text">
                                                 <p class="highlights__text-small">Sunrise</p>
-                                                <p class="highlights__text-main">06:46</p>
+                                                <p class="highlights__text-main" id="ss_sunriseTime">06:46</p>
                                             </div>
                                         </div>
                                         <div class="ss-boxes__card">
@@ -201,7 +202,7 @@
                                             </div>
                                             <div class="ss-boxes__card__text">
                                                 <p class="highlights__text-small">Sunset</p>
-                                                <p class="highlights__text-main">17:39</p>
+                                                <p class="highlights__text-main" id="ss_sunsetTime">17:39</p>
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +219,7 @@
                                         <div class="ss-boxes__card__icon">
                                             <img src="./assets/icons/humidity_percentage_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="Humidity" class="highlights__icon">
                                         </div>
-                                        <p class="highlights__text-main">82%</p>
+                                        <p class="highlights__text-main" id="humidityPercent">82%</p>
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +232,7 @@
                                         <div class="ss-boxes__card__icon">
                                             <img src="./assets/icons/air_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="Wind" class="highlights__icon">
                                         </div>
-                                        <p class="highlights__text-main">10km/h</p>
+                                        <p class="highlights__text-main" id="windSpeed">10km/h</p>
                                     </div>
                                 </div>
                             </div>
@@ -244,7 +245,7 @@
                                         <div class="ss-boxes__card__icon">
                                             <img src="./assets/icons/visibility_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="Visibility" class="highlights__icon">
                                         </div>
-                                        <p class="highlights__text-main">10km</p>
+                                        <p class="highlights__text-main" id="VisibilityDistance">10km</p>
                                     </div>
                                 </div>
                             </div>
@@ -257,7 +258,7 @@
                                         <div class="ss-boxes__card__icon">
                                             <img src="./assets/icons/thermostat_32dp_FFFFFF_FILL0_wght300_GRAD0_opsz40.svg" alt="feelsLike" class="highlights__icon">
                                         </div>
-                                        <p class="highlights__text-main">2°C</p>
+                                        <p class="highlights__text-main" id="feelsLike_temp">2°C</p>
                                     </div>
                                 </div>
                             </div>
@@ -271,12 +272,12 @@
                             <div class="todayAt__boxes">
                                 <div class="todayAt__boxes__card">
                                     <div class="card__box-bottom">
-                                        <p class="todayAt__text">9 PM</p>
-                                        <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="highlights__icon">
-                                        <p class="todayAt__text">5°C</p>
+                                        <p class="todayAt__text" id="todayAt_time">9 PM</p>
+                                        <img src="./assets/icons/512px-Antu_weather-clouds.png" alt="weatherCondition" class="highlights__icon" id="todayAt_condition_icon">
+                                        <p class="todayAt__text" id="todayAt_temp">5°C</p>
                                     </div>
                                     <div class="card__box-text">
-                                        <p class="todayAt__text">9 PM</p>
+                                        <p class="todayAt__text" id="todayAt_time">9 PM</p>
                                     </div>
                                 </div>
                                 <div class="todayAt__boxes__card">
