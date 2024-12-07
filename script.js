@@ -56,7 +56,7 @@ const updateNowData = (data) => {
     now_temp.textContent = data.current.temp_c + '°C';
     now_condition.textContent = data.current.condition.text;
     now_condition_icon.src = "https:" + data.current.condition.icon;
-    now_date.textContent = data.forecast.forecastday[0].date;
+    now_date.textContent = convertDateDataToDate(data.forecast.forecastday[0].date) + ", " + convertDateDataToDay(data.forecast.forecastday[0].date);
     now_location.textContent = data.location.name;
 
     now_temp.classList.add('active');
@@ -72,17 +72,45 @@ const updateNowData = (data) => {
 
 const updateForecastData = (data) => {
     for (let i = 1; i < data.forecast.forecastday.length; i++) {
-        forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box">
-            <div class="forecast__box__weather">
-                <img src="${data.forecast.forecastday[i].day.condition.icon}" alt="weatherCondition" class="forecast__box__weather-condition">
-                <div class="forecast__box__text">
-                    <p class="forecast__box__weather-temp">${data.forecast.forecastday[i].day.maxtemp_c} / ${data.forecast.forecastday[i].day.mintemp_c}</p>
+        if(i == data.forecast.forecastday.length - 1){
+            forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box last">
+                <div class="forecast__box__weather">
+                    <img src="${data.forecast.forecastday[i].day.condition.icon}" alt="weatherCondition" class="forecast__box__weather-condition">
+                    <div class="forecast__box__text">
+                        <p class="forecast__box__weather-temp">${data.forecast.forecastday[i].day.maxtemp_c} / ${data.forecast.forecastday[i].day.mintemp_c}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="forecast__box__text">
-                <p class="forecast__text">${data.forecast.forecastday[i].date}</p>
-            </div>
-        </div>`);
+                <div class="forecast__box__text">
+                    <p class="forecast__text" id="forecast_date">${convertDateDataToDate(data.forecast.forecastday[i].date)}</p>
+                </div>
+                <div class="forecast__box__text">
+                    <p class="forecast__text">${convertDateDataToDay(data.forecast.forecastday[i].date)}</p>
+                </div>
+            </div>`);
+            const forecast_boxes = document.querySelectorAll('.forecast__box');
+            forecast_boxes.forEach((box) => {
+                setTimeout(() => {box.classList.add('active');}, 10);
+            });
+        } else {
+            forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box">
+                <div class="forecast__box__weather">
+                    <img src="${data.forecast.forecastday[i].day.condition.icon}" alt="weatherCondition" class="forecast__box__weather-condition">
+                    <div class="forecast__box__text">
+                        <p class="forecast__box__weather-temp">${data.forecast.forecastday[i].day.maxtemp_c} / ${data.forecast.forecastday[i].day.mintemp_c}</p>
+                    </div>
+                </div>
+                <div class="forecast__box__text">
+                    <p class="forecast__text" id="forecast_date">${convertDateDataToDate(data.forecast.forecastday[i].date)}</p>
+                </div>
+                <div class="forecast__box__text">
+                    <p class="forecast__text">${convertDateDataToDay(data.forecast.forecastday[i].date)}</p>
+                </div>
+            </div>`);
+            const forecast_boxes = document.querySelectorAll('.forecast__box');
+                forecast_boxes.forEach((box) => {
+                setTimeout(() => {box.classList.add('active');}, 10);
+            });
+        }
     };
     const forecast_boxes = document.querySelectorAll('.forecast__box');
     forecast_boxes.forEach((box) => {
@@ -184,4 +212,24 @@ const updateTodayAtData = (data) => {
     todayAt_icons.forEach((icon) => {
         setTimeout(() => {icon.classList.add('active');}, 10);
     })
+}
+
+
+
+
+
+
+const convertDateDataToDate = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleString('en-US', { 
+        day: 'numeric',
+        month: 'short'
+    });
+}
+
+const convertDateDataToDay = (dateString) => {
+    const [year, month, day] = dateString.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
+    return date.toLocaleString('en-US', { weekday: 'short' });
 }
