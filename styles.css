@@ -505,6 +505,12 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    transition: 0.3s;
+    opacity: 0;
+}
+
+.boxes-quadruple__card.active {
+    opacity: 1;
 }
 
 .widget__todayAt {

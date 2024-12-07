@@ -11,16 +11,17 @@ const aq_pm = document.getElementById('aq_pm');
 const aq_so = document.getElementById('aq_so');
 const aq_no = document.getElementById('aq_no');
 const aq_o = document.getElementById('aq_o');
-const aqBoxes_card = document.querySelectorAll('.aq-boxes__card');
+const aqBoxes_cards = document.querySelectorAll('.aq-boxes__card');
 
 const ss_sunriseTime = document.getElementById('ss_sunriseTime');
 const ss_sunsetTime = document.getElementById('ss_sunsetTime');
-const ssBoxes_card = document.querySelectorAll('.ss-boxes__card');
+const ssBoxes_cards = document.querySelectorAll('.ss-boxes__card');
 
 const humidityPercent = document.getElementById('humidityPercent');
 const windSpeed = document.getElementById('windSpeed');
 const visibilityDistance = document.getElementById('visibilityDistance');
 const feelsLike_temp = document.getElementById('feelsLike_temp');
+const highlightsBottom_cards = document.querySelectorAll('.boxes-quadruple__card');
 
 
 
@@ -39,6 +40,7 @@ const showData = async (city) => {
     updateAQData(data);
     updateForecastData(data);
     updateSSData(data);
+    updateHighlightsBottomData(data);
 }
 
 showData();
@@ -107,7 +109,7 @@ const updateAQData = (data) => {
     aq_so.textContent = data.current.air_quality.so2;
     aq_no.textContent = data.current.air_quality.no2;
     aq_o.textContent = data.current.air_quality.o3;
-    aqBoxes_card.forEach((card) => {
+    aqBoxes_cards.forEach((card) => {
         card.classList.add('active');
       });
 }
@@ -120,7 +122,7 @@ console.log(now_temp.textContent);
 const updateSSData = (data) => {
     ss_sunriseTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunrise);
     ss_sunsetTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunset);
-    ssBoxes_card.forEach((card) => {
+    ssBoxes_cards.forEach((card) => {
         card.classList.add('active');
       });
 }
@@ -138,4 +140,18 @@ const convertTimeFormat = (timeString) => {
     hours = hours.toString().padStart(2, '0');
   
     return `${hours}:${minutes.toString().padStart(2, '0')}`;
+}
+
+
+
+
+const updateHighlightsBottomData = (data) => {
+    humidityPercent.textContent = data.current.humidity + "%";
+    windSpeed.textContent = data.current.wind_kph + " km/h";
+    visibilityDistance.textContent = data.current.vis_km + " km";
+    feelsLike_temp.textContent = data.current.feelslike_c + "°C";
+
+    highlightsBottom_cards.forEach((card) => {
+        card.classList.add('active');
+    });
 }
