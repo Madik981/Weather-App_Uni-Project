@@ -801,6 +801,10 @@ body {
         width: 100%;
     }
 
+    .ss-boxes__card{
+        gap: 7%;
+    }
+
     .highlights__boxes-double__box__ss-boxes, .highlights__boxes-double__box__aq-boxes {
         padding: 0 3px;
     }
