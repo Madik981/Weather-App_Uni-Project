@@ -778,6 +778,10 @@ body {
         gap: 10px;
     }
 
+    .highlights__boxes-double__box__ss-boxes, .highlights__boxes-double__box__aq-boxes {
+        padding: 0 3px;
+    }
+
     .highlights__boxes-quadruple {
         flex-direction: column;
         gap: 19px;
@@ -793,6 +797,6 @@ body {
     }
 
     .highlights__text-main {
-        font-size: 20px;
+        font-size: 19px;
     }
 }
