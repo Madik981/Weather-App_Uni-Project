@@ -32,11 +32,13 @@ const searchBtn = document.getElementById('searchBtn');
 
 
 searchBtn.onclick = () => {
+    if(city.value.trim() === "") return;
     showData(city.value);
     city.value = '';
 }
 
 city.onkeydown = (e) => {
+    if(city.value.trim() === "") return;
     if(e.key === "Enter"){
         showData(city.value);
         city.value = '';
@@ -63,7 +65,7 @@ const showData = async (city) => {
     updateBackground(data.current.condition.text, data);
 }
 
-showData(city.value);
+// showData(city.value);
 
 
 
