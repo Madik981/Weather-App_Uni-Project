@@ -373,11 +373,13 @@ const updateBackground = (condition, data) => {
 const backgroundStyle = (body) => {
     body.style.backgroundSize = "cover";
     body.style.backgroundPosition = "center";
+    body.style.backgroundRepeat = "no-repeat";
 }
 
 const updateWidgetsTheme = (theme) => {
     const widgets = {
         searchContainer: document.querySelector('.searchContainer'),
+        refreshBox: document.querySelector('.refreshBox'),
         widget_weatherNow: document.querySelector('.widget__weatherNow'),
         widget_forecast: document.querySelector('.widget__forecast'),
         widget_highlights: document.querySelector('.widget__highlights'),
