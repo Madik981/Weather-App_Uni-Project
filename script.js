@@ -259,6 +259,7 @@ const convertDateDataToDay = (dateString) => {
 
 const updateBackground = (condition, data) => {
     const body = document.querySelector('body');
+
     if(data.current.is_day == 1){
         switch (condition) {
             case 'Sunny':
@@ -276,6 +277,7 @@ const updateBackground = (condition, data) => {
             case 'Mist': case 'Fog': case 'Freezing fog':
                 body.style.background = "url('./assets/backgrounds/day/day-fog.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
             case 'Patchy rain possible': case 'Patchy freezing drizzle possible': case 'Patchy light drizzle': case 'Light drizzle': case 'Freezing drizzle': case 'Heavy freezing drizzle': case 'Patchy light rain': case 'light rain': case 'Moderate rain at times': case 'Moderate rain': case 'Heavy rain at times': case 'Heavy rain': case 'Light freezing rain': case 'Moderate or heavy freezing rain': case 'Light rain shower': case 'Moderate or heavy rain shower': case 'Torrential rain shower':
                 body.style.background = "url('./assets/backgrounds/day/day-rain.png')";
@@ -284,6 +286,7 @@ const updateBackground = (condition, data) => {
             case 'Patchy snow possible': case 'Patchy sleet possible': case 'Light sleet': case 'Moderate or heavy sleet': case 'Patchy light snow': case 'Light snow': case 'Patchy moderate snow': case 'Moderate snow': case 'Patchy heavy snow': case 'Heavy snow': case 'Ice pellets': case 'Light snow showers': case 'Moderate or heavy snow showers': case 'Light showers of ice pellets': case 'Moderate or heavy showers of ice pellets': case 'Patchy light snow with thunder': case 'Moderate or heavy snow with thunder':
                 body.style.background = "url('./assets/backgrounds/day/day-snow2.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
             case 'Thundery outbreaks possible': case 'Patchy light rain with thunder': case 'Moderate or heavy rain with thunder':
                 body.style.background = "url('./assets/backgrounds/day/day-thunderstorm.png')";
@@ -339,4 +342,71 @@ const updateBackground = (condition, data) => {
 const backgroundStyle = (body) => {
     body.style.backgroundSize = "cover";
     body.style.backgroundPosition = "center";
+}
+
+const updateWidgetsTheme = (theme) => {
+    const widgets = {
+        searchContainer: document.querySelector('.searchContainer'),
+        widget_weatherNow: document.querySelector('.widget__weatherNow'),
+        widget_forecast: document.querySelector('.widget__forecast'),
+        widget_highlights: document.querySelector('.widget__highlights'),
+        widget_todayAt: document.querySelector('.widget__todayAt')
+    }
+
+    const subWidgets = {
+        highlights_aqandss: document.querySelectorAll('.highlights__boxes-double__box'),
+        highlights_other4widgets: document.querySelectorAll('.highlights__boxes-quadruple__box')
+    }
+
+    const todayAtCards = {
+        cards_bottom: document.querySelectorAll('.card__box-bottom'),
+        cards_text: document.querySelectorAll('.card__box-text')
+    }
+
+
+    changeWidgetsTheme(theme, Object.values(widgets), Object.values(subWidgets), Object.values(todayAtCards));  
+}
+
+const changeWidgetsTheme = (theme, widgets, subWidgets, todayAtCards) => {
+    if(theme === 'light'){
+        widgets.forEach((widget) => {
+            removeDarkTheme(widget);
+        });
+        subWidgets.forEach((subWidget) => {
+            subWidget.forEach((box) => {
+                removeDarkTheme(box);
+            });
+        });
+        todayAtCards.forEach((card) => {
+            card.forEach((box) => {
+                removeDarkTheme(box);
+            });
+        });
+    } else if(theme === 'dark'){
+        widgets.forEach((widget) => {
+            addDarkTheme(widget);
+        });
+        subWidgets.forEach((subWidget) => {
+            subWidget.forEach((box) => {
+                addDarkTheme(box);
+            });
+        });
+        todayAtCards.forEach((card) => {
+            card.forEach((box) => {
+                addDarkTheme(box);
+            });
+        });
+    };
+};
+
+const addDarkTheme = (element) => {
+    if(!element.classList.contains('dark')){
+        element.classList.add('dark');
+    };
+}
+
+const removeDarkTheme = (element) => {
+    if(element.classList.contains('dark')){
+        element.classList.remove('dark');
+    };
 }
