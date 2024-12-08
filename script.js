@@ -29,11 +29,25 @@ const todayAt_boxes = document.getElementById('todayAt_boxes');
 
 const city = document.getElementById('searchInp');
 const searchBtn = document.getElementById('searchBtn');
+const refreshBtn = document.getElementById('refreshBtn');
 
+let currentCity = "";
+
+
+setInterval(() => {
+    if(currentCity === "") return;
+    showData(currentCity);
+}, 900000);
+
+refreshBtn.onclick = () => {
+    if(currentCity === "") return;
+    showData(currentCity);
+}
 
 searchBtn.onclick = () => {
     if(city.value.trim() === "") return;
     showData(city.value);
+    currentCity = city.value;
     city.value = '';
 }
 
@@ -41,6 +55,7 @@ city.onkeydown = (e) => {
     if(city.value.trim() === "") return;
     if(e.key === "Enter"){
         showData(city.value);
+        currentCity = city.value;
         city.value = '';
     }
 }
@@ -64,6 +79,7 @@ const showData = async (city) => {
     updateTodayAtData(data);
     updateBackground(data.current.condition.text, data);
     // data.current.condition.text
+
 }
 
 // showData(city.value);

@@ -79,6 +79,7 @@ body {
 
 .nav__icon {
     -webkit-user-drag: none;
+    user-select: none;
     height: 35px;
     opacity: 0.85;
 }
@@ -92,6 +93,7 @@ body {
     align-items: center;
     height: 15%;
     width: 100%;
+    gap: 22px;
     padding: 0px 43px;
 }
 
@@ -146,7 +148,36 @@ body {
     opacity: 0.8;
 }
 
+.refreshBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 43px;
+    height: 43px;
+    background-color: rgb(0, 0, 0, 0.15);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
+.refreshBox:hover {
+    background-color: rgb(0, 0, 0, 0.3);
+}
+
+.refreshBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.refreshBtn:active {
+    transform: scale(0.9);
+}
 
 .main {
     width: 100%;
