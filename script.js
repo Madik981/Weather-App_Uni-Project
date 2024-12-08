@@ -156,10 +156,10 @@ const updateForecastData = (data) => {
 
 
 const updateAQData = (data) => {
-    aq_pm.textContent = data.current.air_quality.pm2_5;
-    aq_so.textContent = data.current.air_quality.so2;
-    aq_no.textContent = data.current.air_quality.no2;
-    aq_o.textContent = data.current.air_quality.o3;
+    aq_pm.textContent = data.current.air_quality.pm2_5.toFixed(1);
+    aq_so.textContent = data.current.air_quality.so2.toFixed(1);
+    aq_no.textContent = data.current.air_quality.no2.toFixed(1);
+    aq_o.textContent = data.current.air_quality.o3.toFixed(1);
     aqBoxes_cards.forEach((card) => {
         card.classList.add('active');
       });
