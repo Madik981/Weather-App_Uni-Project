@@ -63,6 +63,7 @@ const showData = async (city) => {
     updateHighlightsBottomData(data);
     updateTodayAtData(data);
     updateBackground(data.current.condition.text, data);
+    // data.current.condition.text
 }
 
 // showData(city.value);
@@ -261,77 +262,91 @@ const updateBackground = (condition, data) => {
     const body = document.querySelector('body');
 
     if(data.current.is_day == 1){
-        switch (condition) {
-            case 'Sunny':
+        switch (condition.toLowerCase()) {
+            case 'sunny':
                 body.style.background = "url('./assets/backgrounds/day/day-sunny.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('light');
                 break;
-            case 'Partly cloudy':
+            case 'partly cloudy':
                 body.style.background = "url('./assets/backgrounds/day/day-partlyCloudy.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
-            case 'Cloudy': case 'Overcast':
+            case 'cloudy': case 'overcast':
                 body.style.background = "url('./assets/backgrounds/day/day-cloudy.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
-            case 'Mist': case 'Fog': case 'Freezing fog':
+            case 'mist': case 'fog': case 'freezing fog':
                 body.style.background = "url('./assets/backgrounds/day/day-fog.png')";
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
-            case 'Patchy rain possible': case 'Patchy freezing drizzle possible': case 'Patchy light drizzle': case 'Light drizzle': case 'Freezing drizzle': case 'Heavy freezing drizzle': case 'Patchy light rain': case 'light rain': case 'Moderate rain at times': case 'Moderate rain': case 'Heavy rain at times': case 'Heavy rain': case 'Light freezing rain': case 'Moderate or heavy freezing rain': case 'Light rain shower': case 'Moderate or heavy rain shower': case 'Torrential rain shower':
+            case 'patchy rain possible': case 'patchy freezing drizzle possible': case 'patchy light drizzle': case 'light drizzle': case 'freezing drizzle': case 'heavy freezing drizzle': case 'patchy light rain': case 'light rain': case 'moderate rain at times': case 'moderate rain': case 'heavy rain at times': case 'heavy rain': case 'light freezing rain': case 'moderate or heavy freezing rain': case 'light rain shower': case 'moderate or heavy rain shower': case 'torrential rain shower':
                 body.style.background = "url('./assets/backgrounds/day/day-rain.png')";
-                backgroundStyle(body);
-                break;
-            case 'Patchy snow possible': case 'Patchy sleet possible': case 'Light sleet': case 'Moderate or heavy sleet': case 'Patchy light snow': case 'Light snow': case 'Patchy moderate snow': case 'Moderate snow': case 'Patchy heavy snow': case 'Heavy snow': case 'Ice pellets': case 'Light snow showers': case 'Moderate or heavy snow showers': case 'Light showers of ice pellets': case 'Moderate or heavy showers of ice pellets': case 'Patchy light snow with thunder': case 'Moderate or heavy snow with thunder':
-                body.style.background = "url('./assets/backgrounds/day/day-snow2.png')";
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
-            case 'Thundery outbreaks possible': case 'Patchy light rain with thunder': case 'Moderate or heavy rain with thunder':
-                body.style.background = "url('./assets/backgrounds/day/day-thunderstorm.png')";
+            case 'patchy snow possible': case 'patchy sleet possible': case 'light sleet': case 'moderate or heavy sleet': case 'patchy light snow': case 'light snow': case 'patchy moderate snow': case 'moderate snow': case 'patchy heavy snow': case 'heavy snow': case 'ice pellets': case 'light snow showers': case 'moderate or heavy snow showers': case 'light showers of ice pellets': case 'moderate or heavy showers of ice pellets': case 'patchy light snow with thunder': case 'moderate or heavy snow with thunder':
+                body.style.background = "url('./assets/backgrounds/day/day-snow1.jpg')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
-            case 'Blowing snow': case 'Blizzard':
-                body.style.background = "url('./assets/backgrounds/day/day-blizzard.png')";
+            case 'thundery outbreaks possible': case 'tatchy light rain with thunder': case 'moderate or heavy rain with thunder':
+                body.style.background = "url('./assets/backgrounds/day/day-thunder.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
+                break;
+            case 'blowing snow': case 'blizzard':
+                body.style.background = "url('./assets/backgrounds/day/day-snow1.jpg')";
+                backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
             default:
                 console.log('Unknown weather condition');
         }
     } else {
-        switch (condition) {
-            case 'Clear':
-                body.style.background = "url('./assets/backgrounds/night/night-clear.png')";
+        switch (condition.toLowerCase()) {
+            case 'clear':
+                body.style.background = "url('./assets/backgrounds/night/night-clear1.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('light');
                 break;
-            case 'Partly cloudy':
+            case 'partly cloudy':
                 body.style.background = "url('./assets/backgrounds/night/night-partlyCloudy.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
-            case 'Cloudy': case 'Overcast':
+            case 'cloudy': case 'overcast':
                 body.style.background = "url('./assets/backgrounds/night/night-cloudy.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('dark');
                 break;
-            case 'Mist': case 'Fog': case 'Freezing fog':
+            case 'mist': case 'fog': case 'freezing fog':
                 body.style.background = "url('./assets/backgrounds/night/night-fog.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('light');
                 break;
-            case 'Patchy rain possible': case 'Patchy freezing drizzle possible': case 'Patchy light drizzle': case 'Light drizzle': case 'Freezing drizzle': case 'Heavy freezing drizzle': case 'Patchy light rain': case 'light rain': case 'Moderate rain at times': case 'Moderate rain': case 'Heavy rain at times': case 'Heavy rain': case 'Light freezing rain': case 'Moderate or heavy freezing rain': case 'Light rain shower': case 'Moderate or heavy rain shower': case 'Torrential rain shower':
+            case 'patchy rain possible': case 'patchy freezing drizzle possible': case 'patchy light drizzle': case 'light drizzle': case 'freezing drizzle': case 'heavy freezing drizzle': case 'patchy light rain': case 'light rain': case 'moderate rain at times': case 'moderate rain': case 'heavy rain at times': case 'heavy rain': case 'light freezing rain': case 'moderate or heavy freezing rain': case 'light rain shower': case 'moderate or heavy rain shower': case 'torrential rain shower':
                 body.style.background = "url('./assets/backgrounds/night/night-rain.png')";
                 backgroundStyle(body);
+                updateWidgetsTheme('light');
                 break;
-            case 'Patchy snow possible': case 'Patchy sleet possible': case 'Light sleet': case 'Moderate or heavy sleet': case 'Patchy light snow': case 'Light snow': case 'Patchy moderate snow': case 'Moderate snow': case 'Patchy heavy snow': case 'Heavy snow': case 'Ice pellets': case 'Light snow showers': case 'Moderate or heavy snow showers': case 'Light showers of ice pellets': case 'Moderate or heavy showers of ice pellets': case 'Patchy light snow with thunder': case 'Moderate or heavy snow with thunder':
+            case 'patchy snow possible': case 'patchy sleet possible': case 'light sleet': case 'moderate or heavy sleet': case 'patchy light snow': case 'light snow': case 'patchy moderate snow': case 'moderate snow': case 'patchy heavy snow': case 'heavy snow': case 'ice pellets': case 'light snow showers': case 'moderate or heavy snow showers': case 'light showers of ice pellets': case 'moderate or heavy showers of ice pellets': case 'patchy light snow with thunder': case 'moderate or heavy snow with thunder':
+                body.style.background = "url('./assets/backgrounds/night/night-snowyFog.png')";
+                backgroundStyle(body);
+                updateWidgetsTheme('light');
+                break;
+            case 'thundery outbreaks possible': case 'patchy light rain with thunder': case 'moderate or heavy rain with thunder':
+                body.style.background = "url('./assets/backgrounds/night/night-thunder.png')";
+                backgroundStyle(body);
+                updateWidgetsTheme('dark');
+                break;
+            case 'blowing snow': case 'blizzard':
                 body.style.background = "url('./assets/backgrounds/night/night-snow.png')";
                 backgroundStyle(body);
-                break;
-            case 'Thundery outbreaks possible': case 'Patchy light rain with thunder': case 'Moderate or heavy rain with thunder':
-                body.style.background = "url('./assets/backgrounds/night/night-thunderstorm.png')";
-                backgroundStyle(body);
-                break;
-            case 'Blowing snow': case 'Blizzard':
-                body.style.background = "url('./assets/backgrounds/night/night-blizzard.png')";
-                backgroundStyle(body);
+                updateWidgetsTheme('light');
                 break;
             default:
                 console.log('Unknown weather condition');
