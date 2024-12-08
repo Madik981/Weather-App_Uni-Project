@@ -336,7 +336,7 @@ const updateBackground = (condition, data) => {
             case 'patchy snow possible': case 'patchy sleet possible': case 'light sleet': case 'moderate or heavy sleet': case 'patchy light snow': case 'light snow': case 'patchy moderate snow': case 'moderate snow': case 'patchy heavy snow': case 'heavy snow': case 'ice pellets': case 'light snow showers': case 'moderate or heavy snow showers': case 'light showers of ice pellets': case 'moderate or heavy showers of ice pellets': case 'patchy light snow with thunder': case 'moderate or heavy snow with thunder':
                 body.style.background = "url('./assets/backgrounds/night/night-snowyFog.png')";
                 backgroundStyle(body);
-                updateWidgetsTheme('light');
+                updateWidgetsTheme('dark');
                 break;
             case 'thundery outbreaks possible': case 'patchy light rain with thunder': case 'moderate or heavy rain with thunder':
                 body.style.background = "url('./assets/backgrounds/night/night-thunder.png')";
