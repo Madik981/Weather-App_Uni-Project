@@ -27,6 +27,21 @@ const highlights_icons = document.querySelectorAll('.highlights__icon');
 const todayAt_boxes = document.getElementById('todayAt_boxes');
 
 
+const city = document.getElementById('searchInp');
+const searchBtn = document.getElementById('searchBtn');
+
+
+searchBtn.onclick = () => {
+    showData(city.value);
+    city.value = '';
+}
+
+city.onkeydown = (e) => {
+    if(e.key === "Enter"){
+        showData(city.value);
+        city.value = '';
+    }
+}
 
 const api_key = '08f52bb32c104b07b1e124813240512';
 
@@ -37,7 +52,7 @@ const fetchData = async (city) => {
 }
 
 const showData = async (city) => {
-    const data = await fetchData("Almaty");
+    const data = await fetchData(city);
     console.log(data);
     updateNowData(data);
     updateAQData(data);
@@ -45,9 +60,10 @@ const showData = async (city) => {
     updateSSData(data);
     updateHighlightsBottomData(data);
     updateTodayAtData(data);
+    updateBackground(data.current.condition.text, data);
 }
 
-showData();
+showData(city.value);
 
 
 
@@ -71,6 +87,7 @@ const updateNowData = (data) => {
 
 
 const updateForecastData = (data) => {
+    forecast_boxesList.innerHTML = '';
     for (let i = 1; i < data.forecast.forecastday.length; i++) {
         if(i == data.forecast.forecastday.length - 1){
             forecast_boxesList.insertAdjacentHTML('beforeend', `<div class="forecast__box last">
@@ -195,6 +212,7 @@ const updateHighlightsBottomData = (data) => {
 
 
 const updateTodayAtData = (data) => {
+    todayAt_boxes.innerHTML = '';
     for (let i = 0; i < data.forecast.forecastday[0].hour.length; i++) {
         const time = i.toString().padStart(2, '0') + ":00";
         todayAt_boxes.insertAdjacentHTML('beforeend', `<div class="todayAt__boxes__card">
@@ -237,26 +255,86 @@ const convertDateDataToDay = (dateString) => {
 
 
 
-const updateBackground = (condition) => {
+const updateBackground = (condition, data) => {
     const body = document.querySelector('body');
-    switch (condition) {
-        case 'Sunny':
-            body.style.backgroundImage = "url('./assets/images/sunny.jpg')";
-            break;
-        case 'Rain':
-            body.style.backgroundImage = "url('./assets/images/rain.jpg')";
-            break;
-        case 'Cloudy':
-            body.style.backgroundImage = "url('./assets/images/cloudy.jpg')";
-            break;
-        case 'Partly cloudy':
-            body.style.backgroundImage = "url('./assets/images/partly-cloudy.jpg')";
-            break;
-        case 'Clear':
-            body.style.backgroundImage = "url('./assets/images/clear.jpg')";
-            break;
-        default:
-            console.log('Unknown weather condition');
+    if(data.current.is_day == 1){
+        switch (condition) {
+            case 'Sunny':
+                body.style.background = "url('./assets/backgrounds/day/day-sunny.png')";
+                backgroundStyle(body);
+                break;
+            case 'Partly cloudy':
+                body.style.background = "url('./assets/backgrounds/day/day-partlyCloudy.png')";
+                backgroundStyle(body);
+                break;
+            case 'Cloudy': case 'Overcast':
+                body.style.background = "url('./assets/backgrounds/day/day-cloudy.png')";
+                backgroundStyle(body);
+                break;
+            case 'Mist': case 'Fog': case 'Freezing fog':
+                body.style.background = "url('./assets/backgrounds/day/day-fog.png')";
+                backgroundStyle(body);
+                break;
+            case 'Patchy rain possible': case 'Patchy freezing drizzle possible': case 'Patchy light drizzle': case 'Light drizzle': case 'Freezing drizzle': case 'Heavy freezing drizzle': case 'Patchy light rain': case 'light rain': case 'Moderate rain at times': case 'Moderate rain': case 'Heavy rain at times': case 'Heavy rain': case 'Light freezing rain': case 'Moderate or heavy freezing rain': case 'Light rain shower': case 'Moderate or heavy rain shower': case 'Torrential rain shower':
+                body.style.background = "url('./assets/backgrounds/day/day-rain.png')";
+                backgroundStyle(body);
+                break;
+            case 'Patchy snow possible': case 'Patchy sleet possible': case 'Light sleet': case 'Moderate or heavy sleet': case 'Patchy light snow': case 'Light snow': case 'Patchy moderate snow': case 'Moderate snow': case 'Patchy heavy snow': case 'Heavy snow': case 'Ice pellets': case 'Light snow showers': case 'Moderate or heavy snow showers': case 'Light showers of ice pellets': case 'Moderate or heavy showers of ice pellets': case 'Patchy light snow with thunder': case 'Moderate or heavy snow with thunder':
+                body.style.background = "url('./assets/backgrounds/day/day-snow2.png')";
+                backgroundStyle(body);
+                break;
+            case 'Thundery outbreaks possible': case 'Patchy light rain with thunder': case 'Moderate or heavy rain with thunder':
+                body.style.background = "url('./assets/backgrounds/day/day-thunderstorm.png')";
+                backgroundStyle(body);
+                break;
+            case 'Blowing snow': case 'Blizzard':
+                body.style.background = "url('./assets/backgrounds/day/day-blizzard.png')";
+                backgroundStyle(body);
+                break;
+            default:
+                console.log('Unknown weather condition');
+        }
+    } else {
+        switch (condition) {
+            case 'Clear':
+                body.style.background = "url('./assets/backgrounds/night/night-clear.png')";
+                backgroundStyle(body);
+                break;
+            case 'Partly cloudy':
+                body.style.background = "url('./assets/backgrounds/night/night-partlyCloudy.png')";
+                backgroundStyle(body);
+                break;
+            case 'Cloudy': case 'Overcast':
+                body.style.background = "url('./assets/backgrounds/night/night-cloudy.png')";
+                backgroundStyle(body);
+                break;
+            case 'Mist': case 'Fog': case 'Freezing fog':
+                body.style.background = "url('./assets/backgrounds/night/night-fog.png')";
+                backgroundStyle(body);
+                break;
+            case 'Patchy rain possible': case 'Patchy freezing drizzle possible': case 'Patchy light drizzle': case 'Light drizzle': case 'Freezing drizzle': case 'Heavy freezing drizzle': case 'Patchy light rain': case 'light rain': case 'Moderate rain at times': case 'Moderate rain': case 'Heavy rain at times': case 'Heavy rain': case 'Light freezing rain': case 'Moderate or heavy freezing rain': case 'Light rain shower': case 'Moderate or heavy rain shower': case 'Torrential rain shower':
+                body.style.background = "url('./assets/backgrounds/night/night-rain.png')";
+                backgroundStyle(body);
+                break;
+            case 'Patchy snow possible': case 'Patchy sleet possible': case 'Light sleet': case 'Moderate or heavy sleet': case 'Patchy light snow': case 'Light snow': case 'Patchy moderate snow': case 'Moderate snow': case 'Patchy heavy snow': case 'Heavy snow': case 'Ice pellets': case 'Light snow showers': case 'Moderate or heavy snow showers': case 'Light showers of ice pellets': case 'Moderate or heavy showers of ice pellets': case 'Patchy light snow with thunder': case 'Moderate or heavy snow with thunder':
+                body.style.background = "url('./assets/backgrounds/night/night-snow.png')";
+                backgroundStyle(body);
+                break;
+            case 'Thundery outbreaks possible': case 'Patchy light rain with thunder': case 'Moderate or heavy rain with thunder':
+                body.style.background = "url('./assets/backgrounds/night/night-thunderstorm.png')";
+                backgroundStyle(body);
+                break;
+            case 'Blowing snow': case 'Blizzard':
+                body.style.background = "url('./assets/backgrounds/night/night-blizzard.png')";
+                backgroundStyle(body);
+                break;
+            default:
+                console.log('Unknown weather condition');
+        }
     }
-    
+}
+
+const backgroundStyle = (body) => {
+    body.style.backgroundSize = "cover";
+    body.style.backgroundPosition = "center";
 }

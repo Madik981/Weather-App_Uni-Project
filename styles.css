@@ -10,8 +10,8 @@
 
 body {
     display: flex;
-    transition: 0.3s;
-    background: url(./assets/backgrounds/cah-fog-trees.png);
+    background: black;
+    transition: background 2s, 0.2s;
     width: 100%;
     height: 100dvh;
     background-size: cover;
