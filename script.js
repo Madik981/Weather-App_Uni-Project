@@ -296,6 +296,7 @@ const updateBackground = (condition, data) => {
                 break;
             case 'mist': case 'fog': case 'freezing fog':
                 body.style.background = "url('./assets/backgrounds/day/day-fog.png')";
+                alert('Warning! There might be fog in your area');
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
@@ -311,11 +312,13 @@ const updateBackground = (condition, data) => {
                 break;
             case 'thundery outbreaks possible': case 'tatchy light rain with thunder': case 'moderate or heavy rain with thunder':
                 body.style.background = "url('./assets/backgrounds/day/day-thunder.png')";
+                alert('Warning! There might be thunder in your area');
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
             case 'blowing snow': case 'blizzard':
                 body.style.background = "url('./assets/backgrounds/day/day-snow1.jpg')";
+                alert('Warning! There might be blizzard outside');
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
@@ -341,6 +344,7 @@ const updateBackground = (condition, data) => {
                 break;
             case 'mist': case 'fog': case 'freezing fog':
                 body.style.background = "url('./assets/backgrounds/night/night-fog.png')";
+                alert('Warning! There might be fog in your area');
                 backgroundStyle(body);
                 updateWidgetsTheme('light');
                 break;
@@ -356,11 +360,13 @@ const updateBackground = (condition, data) => {
                 break;
             case 'thundery outbreaks possible': case 'patchy light rain with thunder': case 'moderate or heavy rain with thunder':
                 body.style.background = "url('./assets/backgrounds/night/night-thunder.png')";
+                alert('Warning! There might be thunder in your area');
                 backgroundStyle(body);
                 updateWidgetsTheme('dark');
                 break;
             case 'blowing snow': case 'blizzard':
                 body.style.background = "url('./assets/backgrounds/night/night-snow.png')";
+                alert('Warning! There might be blizzard outside');
                 backgroundStyle(body);
                 updateWidgetsTheme('light');
                 break;
