@@ -1,3 +1,4 @@
+//Retrieving elements from the DOM
 const now_temp = document.getElementById('now_temp');
 const now_condition_icon = document.getElementById('now_condition_icon');
 const now_condition = document.getElementById('now_condition');
@@ -33,17 +34,19 @@ const refreshBtn = document.getElementById('refreshBtn');
 
 let currentCity = "";
 
-
+//refresh data every 15 minutes
 setInterval(() => {
     if(currentCity === "") return;
     showData(currentCity);
 }, 900000);
 
+//refresh data when refresh button is clicked
 refreshBtn.onclick = () => {
     if(currentCity === "") return;
     showData(currentCity);
 }
 
+//search data when search button is clicked
 searchBtn.onclick = () => {
     if(city.value.trim() === "") return;
     showData(city.value);
@@ -51,6 +54,7 @@ searchBtn.onclick = () => {
     city.value = '';
 }
 
+//search data when enter key is pressed
 city.onkeydown = (e) => {
     if(city.value.trim() === "") return;
     if(e.key === "Enter"){
@@ -62,12 +66,16 @@ city.onkeydown = (e) => {
 
 const api_key = '08f52bb32c104b07b1e124813240512';
 
+
+//fetch data from api
 const fetchData = async (city) => {
     const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${city}&days=6&aqi=yes&alerts=no`);
     const data = await response.json();
     return data;
 }
 
+
+//show data based on city
 const showData = async (city) => {
     const data = await fetchData(city);
     console.log(data);
@@ -86,7 +94,7 @@ const showData = async (city) => {
 
 
 
-
+//update now data based on current weather data
 const updateNowData = (data) => {
     now_temp.textContent = data.current.temp_c + '°C';
     now_condition.textContent = data.current.condition.text;
@@ -104,7 +112,7 @@ const updateNowData = (data) => {
 
 
 
-
+//update forecast data based on daily forecast data
 const updateForecastData = (data) => {
     forecast_boxesList.innerHTML = '';
     for (let i = 1; i < data.forecast.forecastday.length; i++) {
@@ -171,7 +179,7 @@ const updateForecastData = (data) => {
 
 
 
-
+//update air quality data based on current weather data
 const updateAQData = (data) => {
     aq_pm.textContent = data.current.air_quality.pm2_5.toFixed(1);
     aq_so.textContent = data.current.air_quality.so2.toFixed(1);
@@ -186,7 +194,7 @@ console.log(now_temp.textContent);
 
 
 
-
+//update sunrise and sunset time based on current weather data
 const updateSSData = (data) => {
     ss_sunriseTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunrise);
     ss_sunsetTime.textContent = convertTimeFormat(data.forecast.forecastday[0].astro.sunset);
@@ -195,6 +203,7 @@ const updateSSData = (data) => {
       });
 }
 
+//convert time format from 12hr to 24hr
 const convertTimeFormat = (timeString) => {
     const [time, period] = timeString.split(' '); 
     let [hours, minutes] = time.split(':').map(Number);
@@ -212,7 +221,7 @@ const convertTimeFormat = (timeString) => {
 
 
 
-
+//update highlights bottom data based on current weather data
 const updateHighlightsBottomData = (data) => {
     humidityPercent.textContent = data.current.humidity + "%";
     windSpeed.textContent = data.current.wind_kph + " km/h";
@@ -230,6 +239,7 @@ const updateHighlightsBottomData = (data) => {
 
 
 
+//update today at data based on hourly forecast
 const updateTodayAtData = (data) => {
     todayAt_boxes.innerHTML = '';
     for (let i = 0; i < data.forecast.forecastday[0].hour.length; i++) {
@@ -255,7 +265,7 @@ const updateTodayAtData = (data) => {
 
 
 
-
+//convert date data to date format
 const convertDateDataToDate = (dateString) => {
     const [year, month, day] = dateString.split('-').map(Number);
     const date = new Date(year, month - 1, day);
@@ -265,6 +275,7 @@ const convertDateDataToDate = (dateString) => {
     });
 }
 
+//convert date string to day
 const convertDateDataToDay = (dateString) => {
     const [year, month, day] = dateString.split('-').map(Number);
     const date = new Date(year, month - 1, day);
@@ -273,10 +284,11 @@ const convertDateDataToDay = (dateString) => {
 
 
 
-
+//update background image based on weather condition
 const updateBackground = (condition, data) => {
     const body = document.querySelector('body');
 
+    //check if it is day or night
     if(data.current.is_day == 1){
         switch (condition.toLowerCase()) {
             case 'sunny':
@@ -382,6 +394,7 @@ const backgroundStyle = (body) => {
     body.style.backgroundRepeat = "no-repeat";
 }
 
+//update widgets theme based on theme
 const updateWidgetsTheme = (theme) => {
     const widgets = {
         searchContainer: document.querySelector('.searchContainer'),
@@ -406,6 +419,7 @@ const updateWidgetsTheme = (theme) => {
     changeWidgetsTheme(theme, Object.values(widgets), Object.values(subWidgets), Object.values(todayAtCards));  
 }
 
+//change widgets theme based on theme
 const changeWidgetsTheme = (theme, widgets, subWidgets, todayAtCards) => {
     if(theme === 'light'){
         widgets.forEach((widget) => {
