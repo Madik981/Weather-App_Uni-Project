@@ -64,7 +64,7 @@ city.onkeydown = (e) => {
     }
 }
 
-const api_key = '08f52bb32c104b07b1e124813240512';
+const api_key = 'ab2c33cb32ab48f5b8353623242312';
 
 
 //fetch data from api
