@@ -291,7 +291,7 @@ const updateBackground = (condition, data) => {
     //check if it is day or night
     if(data.current.is_day == 1){
         switch (condition.toLowerCase()) {
-            case 'sunny':
+            case 'sunny': case 'clear':
                 body.style.background = "url('./assets/backgrounds/day/day-sunny.png')";
                 backgroundStyle(body);
                 updateWidgetsTheme('light');
@@ -339,7 +339,7 @@ const updateBackground = (condition, data) => {
         }
     } else {
         switch (condition.toLowerCase()) {
-            case 'clear':
+            case 'sunny': case 'clear':
                 body.style.background = "url('./assets/backgrounds/night/night-clear1.png')";
                 backgroundStyle(body);
                 updateWidgetsTheme('light');
